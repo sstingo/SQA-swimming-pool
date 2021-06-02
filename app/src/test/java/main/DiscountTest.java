@@ -44,4 +44,24 @@ public class DiscountTest {
 			Assertions.assertEquals(1, discount.getDiscount());
 		}
 	}
+
+	@DisplayName("團體/會員")
+	@Nested
+	class DifferentIdentities {
+		String dateTime = "2021-05-26 週三 14:30:00";
+
+		@Test
+		public void testGroupHasDiscount() throws Throwable {
+			Identity identity = new Identity(25, true, false);
+			Discount discount = new Discount(identity, dateTime);
+			Assertions.assertEquals(0.7, discount.getDiscount());
+		}
+
+		@Test
+		public void testMemberHasDiscount() throws Throwable {
+			Identity identity = new Identity(25, false, true);
+			Discount discount = new Discount(identity, dateTime);
+			Assertions.assertEquals(0.5, discount.getDiscount());
+		}
+	}
 }
