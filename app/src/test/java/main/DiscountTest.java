@@ -58,7 +58,14 @@ public class DiscountTest {
 		}
 
 		@Test
-		public void testEarlyBirdBusiness() throws Throwable {
+		public void testEarlyBirdBusiness01() throws Throwable {
+			Identity identity = new Identity(25, false, false);
+			Discount discount = new Discount(identity, "2021-05-26 週三 05:00:00");
+			Assertions.assertEquals(0.8, discount.getDiscount());
+		}
+
+		@Test
+		public void testEarlyBirdBusiness02() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			Discount discount = new Discount(identity, "2021-05-26 週三 06:30:00");
 			Assertions.assertEquals(0.8, discount.getDiscount());
