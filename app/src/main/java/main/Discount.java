@@ -34,7 +34,7 @@ public class Discount {
 			discount = 0.7;
 		} else if (12 > identity.getAge() || identity.getAge() >= 60) {
 			discount = 0.8;
-		} else if (5 <= hour && hour < 7) {
+		} else if (hour < 7) {		//(5 <= hour && hour < 7)
 			discount = 0.8;
 		} else {
 			discount = 1;
