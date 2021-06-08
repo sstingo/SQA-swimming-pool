@@ -10,7 +10,7 @@ public class DiscountTest {
 		String dateTime = "2021-05-26 週三 14:30:00";
 
 		@Test
-		public void testAgeLessThan() throws Throwable {
+		void testAgeLessThan() throws Throwable {
 			Identity identity = new Identity(2, false, true);
 			try {
 				new Discount(identity, dateTime);
@@ -20,21 +20,21 @@ public class DiscountTest {
 		}
 
 		@Test
-		public void testAgeHasDiscount01() throws Throwable {
+		void testAgeHasDiscount01() throws Throwable {
 			Identity identity = new Identity(10, false, false);
 			Discount discount = new Discount(identity, dateTime);
 			Assertions.assertEquals(0.8, discount.getDiscount());
 		}
 
 		@Test
-		public void testAgeHasDiscount02() throws Throwable {
+		void testAgeHasDiscount02() throws Throwable {
 			Identity identity = new Identity(65, false, false);
 			Discount discount = new Discount(identity, dateTime);
 			Assertions.assertEquals(0.8, discount.getDiscount());
 		}
 
 		@Test
-		public void testAgeMoreThan() throws Throwable {
+		void testAgeMoreThan() throws Throwable {
 			Identity identity = new Identity(76, false, true);
 			try {
 				new Discount(identity, dateTime);
@@ -48,7 +48,7 @@ public class DiscountTest {
 	@Nested
 	class DifferentBusinessHours {
 		@Test
-		public void testBeforeBusiness() throws Throwable {
+		void testBeforeBusiness() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			try {
 				new Discount(identity, "2021-05-26 週三 04:30:00");
@@ -58,35 +58,35 @@ public class DiscountTest {
 		}
 
 		@Test
-		public void testEarlyBirdBusiness01() throws Throwable {
+		void testEarlyBirdBusiness01() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			Discount discount = new Discount(identity, "2021-05-26 週三 05:00:00");
 			Assertions.assertEquals(0.8, discount.getDiscount());
 		}
 
 		@Test
-		public void testEarlyBirdBusiness02() throws Throwable {
+		void testEarlyBirdBusiness02() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			Discount discount = new Discount(identity, "2021-05-26 週三 06:30:00");
 			Assertions.assertEquals(0.8, discount.getDiscount());
 		}
 
 		@Test
-		public void testHaveBusiness01() throws Throwable {
+		void testHaveBusiness01() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			Discount discount = new Discount(identity, "2021-05-26 週三 10:30:00");
 			Assertions.assertEquals(1, discount.getDiscount());
 		}
 
 		@Test
-		public void testHaveBusiness02() throws Throwable {
+		void testHaveBusiness02() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			Discount discount = new Discount(identity, "2021-05-26 週三 22:00:00");
 			Assertions.assertEquals(1, discount.getDiscount());
 		}
 
 		@Test
-		public void testOverBusiness01() throws Throwable {
+		void testOverBusiness01() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			try {
 				new Discount(identity, "2021-05-26 週三 23:30:00");
@@ -96,7 +96,7 @@ public class DiscountTest {
 		}
 
 		@Test
-		public void testOverBusiness02() throws Throwable {
+		void testOverBusiness02() throws Throwable {
 			Identity identity = new Identity(25, false, false);
 			try {
 				new Discount(identity, "2021-05-26 週三 22:30:00");
@@ -112,21 +112,21 @@ public class DiscountTest {
 		String dateTime = "2021-05-26 週三 14:30:00";
 
 		@Test
-		public void testGroupHasDiscount() throws Throwable {
+		void testGroupHasDiscount() throws Throwable {
 			Identity identity = new Identity(25, false, true);
 			Discount discount = new Discount(identity, dateTime);
 			Assertions.assertEquals(0.7, discount.getDiscount());
 		}
 
 		@Test
-		public void testMemberHasDiscount() throws Throwable {
+		void testMemberHasDiscount() throws Throwable {
 			Identity identity = new Identity(25, true, false);
 			Discount discount = new Discount(identity, dateTime);
 			Assertions.assertEquals(0.5, discount.getDiscount());
 		}
 
 		@Test
-		public void testGroupMemberHasDiscount() throws Throwable {
+		void testGroupMemberHasDiscount() throws Throwable {
 			Identity identity = new Identity(25, true, true);
 			Discount discount = new Discount(identity, dateTime);
 			Assertions.assertEquals(0.5, discount.getDiscount());
