@@ -3,7 +3,7 @@ package main;
 public class Payment {
     static int weekdayCharge = 200;
     static int weekendCharge = 250;
-    private int money;
+    private int money = 0;
     private double totalCharge;
 
     public Payment(Discount discount, String dateTime) {
@@ -23,6 +23,7 @@ public class Payment {
             case "週日":
                 money = weekendCharge;
                 break;
+            default:
         }
 
         totalCharge = money * discount.getDiscount();
