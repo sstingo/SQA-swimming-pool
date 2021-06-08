@@ -1,10 +1,10 @@
 package main;
 
 public class Payment {
-    public static int weekdayCharge = 200;
-    public static int weekendCharge = 250;
-    public int money;
-    public double totalCharge;
+    static int weekdayCharge = 200;
+    static int weekendCharge = 250;
+    private int money;
+    private double totalCharge;
 
     public Payment(Discount discount, String dateTime) {
 
