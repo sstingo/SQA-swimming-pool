@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class InputNormalization {
 
-    public static String string;
-    public static boolean bool;
-    public static int digital;
+    static String string;
+    static boolean bool;
+    static int digital;
 
     public static void regularize(Method method, String type, String tip, String error)
            throws InvocationTargetException, IllegalAccessException {
