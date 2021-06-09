@@ -15,7 +15,7 @@ public class Discount {
 		checkException();
 	}
 
-	public void checkException() throws Throwable {
+	public void checkException() {
 		if (3 > identity.getAge()) {
 			throw new IllegalArgumentException("Your age is too young.");
 		} else if (identity.getAge() > 75) {
