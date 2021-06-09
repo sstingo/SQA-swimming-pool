@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Scanner;
+import java.util.logging.Logger; 
+import java.util.logging.Level; 
 
 public class InputNormalization {
 
@@ -20,13 +22,15 @@ public class InputNormalization {
         System.out.println(tip);
         Scanner input = new Scanner(System.in);
         String inputWord = input.nextLine();
+        Logger logger = Logger.getLogger(InputNormalization.class.getName()); 
+
         switch (type) {
             case "int":
                 int number = 0;
                 try {
                     number = Integer.parseInt(inputWord);
                 } catch (NumberFormatException exception) {
-                    exception.printStackTrace();
+                    logger.log(Level.WARNING, "Wrong type!", exception);
                     System.out.println(error);
                     method.invoke(null);
                 }
@@ -45,7 +49,7 @@ public class InputNormalization {
                         throw new IOException();
                     }
                 } catch (IOException exception) {
-                    exception.printStackTrace();
+                    logger.log(Level.WARNING, "Wrong type!", exception);
                     System.out.println(error);
                     method.invoke(null);
                 }
