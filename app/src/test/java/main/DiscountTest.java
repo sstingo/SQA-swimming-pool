@@ -1,6 +1,7 @@
 package main;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
 
 public class DiscountTest {
 
@@ -47,15 +48,15 @@ public class DiscountTest {
 	@DisplayName("營業與非營業時間")
 	@Nested
 	class DifferentBusinessHours {
-		@Test
-		void testBeforeBusiness() throws Throwable {
-			Identity identity = new Identity(25, false, false);
-			try {
-				new Discount(identity, "2021-05-26 週三 04:30:00");
-			} catch (Throwable exception) {
-				Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
-			}
-		}
+		// @Test
+		// void testBeforeBusiness() throws Throwable {
+		// 	Identity identity = new Identity(25, false, false);
+		// 	try {
+		// 		new Discount(identity, "2021-05-26 週三 04:30:00");
+		// 	} catch (Throwable exception) {
+		// 		Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
+		// 	}
+		// }
 
 		@Test
 		void testEarlyBirdBusiness01() throws Throwable {
@@ -85,25 +86,40 @@ public class DiscountTest {
 			Assertions.assertEquals(1, discount.getDiscount());
 		}
 
-		@Test
-		void testOverBusiness01() throws Throwable {
-			Identity identity = new Identity(25, false, false);
-			try {
-				new Discount(identity, "2021-05-26 週三 23:30:00");
-			} catch (Throwable exception) {
-				Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
-			}
-		}
+		// @Test
+		// void testOverBusiness01() throws Throwable {
+		// 	Identity identity = new Identity(25, false, false);
+		// 	try {
+		// 		new Discount(identity, "2021-05-26 週三 23:30:00");
+		// 	} catch (Throwable exception) {
+		// 		Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
+		// 	}
+		// }
 
-		@Test
-		void testOverBusiness02() throws Throwable {
-			Identity identity = new Identity(25, false, false);
-			try {
-				new Discount(identity, "2021-05-26 週三 22:30:00");
+		// @Test
+		// void testOverBusiness02() throws Throwable {
+		// 	Identity identity = new Identity(25, false, false);
+		// 	try {
+		// 		new Discount(identity, "2021-05-26 週三 22:30:00");
+		// 	} catch (Throwable exception) {
+		// 		Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
+		// 	}
+		// }
+
+		@ParameterizedTest
+	    @ValueSource(strings = { 
+	    	"2021-05-26 週三 04:30:00", 
+	    	"2021-05-26 週三 22:30:00", 
+	    	"2021-05-26 週三 23:30:00", 
+	    })
+	    void testHaveNotBusiness(String dateTime) throws Throwable {
+	        Identity identity = new Identity(25, false, false);
+	        try {
+				new Discount(identity, dateTime);
 			} catch (Throwable exception) {
 				Assertions.assertEquals("Business hours: 05:00-22:00", exception.getMessage());
 			}
-		}
+    	}
 	}
 
 	@DisplayName("團體/會員")
