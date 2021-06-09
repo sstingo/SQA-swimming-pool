@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 public class Query {
 
-    private Query() {}
+    // private Query() {}
 
     public static int queryAge() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String tipMessage = "How old are you?";
