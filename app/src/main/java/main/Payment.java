@@ -9,7 +9,7 @@ public class Payment {
     public Payment(Discount discount, String dateTime) {
 
         String week = InputNormalization.extractWeek(dateTime);
-        System.out.println(week);
+        // System.out.println(week);
 
         switch (week) {
             case "週一":
