@@ -11,7 +11,7 @@ public class InputNormalization {
     static boolean bool;
     static int digital;
 
-    public InputNormalization() {}
+    private InputNormalization() {}
 
     public static void regularize(Method method, String type, String tip, String error)
            throws InvocationTargetException, IllegalAccessException {
